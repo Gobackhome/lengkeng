@@ -1,0 +1,70 @@
+﻿@model lengkeng.Models.Welcome
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section TitleSection{
+    Delete Welcome
+}
+
+@section HeaderSection{
+
+}
+@section ContentBody{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Bạn có muốn xóa lời chào này không?</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Content)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.LinkVideo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.LinkVideo)
+            </dd>
+
+           
+            <dt>
+                @Html.DisplayNameFor(model => model.IsDelete)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsDelete)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Trở lại danh sách", "Index")
+            </div>
+        }
+    </div>
+}

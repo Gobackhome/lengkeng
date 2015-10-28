@@ -1,0 +1,116 @@
+﻿@using lengkeng.ViewModels
+@model ContactViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section TitleSection{
+    Liên lạc - LengKeng.Net.VN
+}
+
+@section HeaderSection{
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+}
+
+@section ContentBody{
+    <div id="main-content" class="main-content">
+    <div class="page-header">
+        <figure class="post-thumbnail">
+            <img src="~/Images/contact.jpg" />
+        </figure>
+        <h1 class="title">
+            <span class="line-title">Liên Lạc<i class="fa">&#xf111;</i></span>
+        </h1>
+    </div>
+    <div class="page-content">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-3 col-md-push-9">
+                    <div class="sidebar">
+                        <div class="widget">
+                            <div class="widget-inner">
+                                <h3 class="title">Thông Tin Liên Lạc</h3>
+                                <div class="widget-text">
+                                    <p>Liên lạc trực tiếp với chúng tôi qua:</p>
+                                    <p>
+                                        Email: <a href="mailto:@{@Model.Email}">@Model.Email</a><br>
+                                        Phone: @Model.Tel
+                                    </p>
+                                    <p>@Model.Address</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget">
+                            <div class="widget-inner">
+                                <h3 class="title">Giờ Mở Cửa</h3>
+                                <div class="widget-text">
+                                    <div class="row">
+                                        <div class="col-xs-8 col-sm-7">Thứ 2 - Thứ 6</div>
+                                        <div class="col-xs-4 col-sm-5">6h30 - 21h30</div>
+
+                                        <div class="col-xs-8 col-sm-7">Thứ 7 - Chủ Nhật</div>
+                                        <div class="col-xs-4 col-sm-5">6h30 - 20h30</div>
+
+                                        @*<div class="col-xs-8 col-sm-7">Sunday &amp; Holidays</div>
+                                        <div class="col-xs-4 col-sm-5">Closed</div>*@
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9  col-md-pull-3">
+                    <div class="contact-content">
+                        <h3 class="title contact-title">Form Liên Lạc</h3>
+                        <p class="contact-desc">
+                            Nếu có bất kỳ thắc mắc hay góp ý nào, bạn hãy gởi thông tin đến chúng tôi theo thông tin dưới đây
+                        </p>
+                        <form action="/Home/DoContact" method="post" id="contactform"
+                              class="contact-form">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p class="contact-form-author">
+                                        <input type="text" required="required" size="30" value="@Model.DoContactAuthor" name="Author" id="author" placeholder="Name">
+                                    </p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p class="contact-form-email">
+                                        <input type="email" required="required" size="30" value="@Model.DoContactEmail"   name="Email" id="email" placeholder="Email">
+                                    </p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p class="contact-form-subject">
+                                        <input type="text" required="required" size="30" value="@Model.DoContactSubject"   name="Subject" id="subject" placeholder="Subject">
+                                    </p>
+                                </div>
+                            </div>
+
+                            <p class="contact-form-message">
+                                <textarea required="required" rows="3" cols="45"
+                                          name="Message" id="message" placeholder="Your message">@Model.DoContactMessage</textarea>
+                            </p>
+                            <p class="form-submit button">
+                                <button class="hvr-rectangle-out" type="submit" id="submit"
+                                        name="submit">
+                                    Gởi
+                                </button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="maps">
+            <div id="map-canvas"></div>
+        </div>
+
+    </div>
+        
+</div>    
+}

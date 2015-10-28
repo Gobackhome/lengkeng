@@ -1,0 +1,76 @@
+﻿@using lengkeng.ViewModels
+@model ItemAdminViewModel
+@{
+    ViewBag.isIndex = true;
+}
+@section TitleSection{
+    View Item
+}
+
+@section HeaderSection{
+    <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+}
+
+@section ContentBody{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Index</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <p>
+        @Html.ActionLink("Tạo mới một thức ăn (đồ uống)", "Create")
+    </p>
+    <br />
+    <table class="table" id="datatable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tên Món</th>
+                <th>Thuộc Danh Mục</th>
+                <th>Giới Thiệu</th>
+                <th>Giá</th>
+                <th>Link Ảnh</th>
+                <th>Cấp Phép</th>
+                <th>Trạng Thái</th>
+                <th>Xóa</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (ItemFollowCategoryViewModel itemFollow in Model.MyItemListView)
+        {
+            foreach (var item in itemFollow.listItemViewModel)
+            {
+                <tr>
+                    <td>@item.ItemId</td>
+                    <td>@item.ItemName</td>
+                    <td>@itemFollow.categoryViewModel.Name</td>
+                    <td>@item.ItemInfo</td>
+                    <td>@item.Prices</td>
+                    <td>@item.ThumbnailPath</td>
+                    <td>@item.IsActive</td>
+                    <td>@item.ItemStatus</td>
+                    <td>@item.IsDelete</td>
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.ItemId }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.ItemId }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.ItemId })
+                    </td>
+                </tr>
+            }
+
+        }
+
+    </table>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        });
+    </script>
+}

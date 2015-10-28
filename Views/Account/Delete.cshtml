@@ -1,0 +1,87 @@
+﻿@model lengkeng.Models.Account
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section TitleSection{
+    Delete
+}
+
+@section HeaderSection{
+
+}
+@section ContentBody{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Xóa tài khoản</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <h3>Bạn có chắc chắn muốn xóa tài khoản này không?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Password)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Userstatus)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Userstatus)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fullname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fullname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Tel)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Tel)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsDelete)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsDelete)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Trở lại danh sách", "Index")
+            </div>
+        }
+    </div>
+}
+

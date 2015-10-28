@@ -1,0 +1,188 @@
+﻿@using lengkeng.ViewModels
+@model HomeIndexViewModel
+@{
+    ViewBag.Title = "Trang Chủ - Lengkeng.net.vn ";
+    Layout = "~/Views/Shared/_LayoutTest.cshtml";
+}
+@section HeaderSection{
+
+}
+<!-- Header -->
+@section BodyContent{
+    
+<div id="main-content" class="main-content">
+    @{
+        if (@Model.homeWelcomeVM != null)
+        {
+            <section id="infoUs" class="section infoUs"
+                     style="background-image: url('@Model.homeWelcomeVM.Background'); background-position: left center; background-repeat: no-repeat;">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-push-6">
+                            <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src='@Html.Raw("https://www.youtube.com/v/"+ Model.homeWelcomeVM.VideoYoutubeId)'></iframe>
+    </div>
+                        </div>
+
+                        <div class="col-sm-6 col-sm-pull-6">
+                            <h1 class="title line-title">
+                                @Model.homeWelcomeVM.Title<i class="fa">&#xf111;</i>
+                            </h1>
+                            <aside>
+
+                                @Html.Raw(Model.homeWelcomeVM.Content)
+
+                            </aside>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+    }
+
+
+    <section id="services" class="section services"
+             style="background-image: url(/Images/services/bg_menu.jpg); background-repeat: no-repeat; background-position: center top; background-size: 100% auto;">
+        <div class="container">
+
+            @*<ul class="service-effect">
+                <li><img alt="" src="/Images/services/service-1.png" class="animated animation-duration-15" data-animate="fadeInLeft animation"></li>
+                <li><img alt="" src="/Images/services/service-2.png" class="animated animation-duration-15" data-animate="fadeInDown animation"></li>
+                <li><img alt="" src="/Images/services/service-3.png" class="animated animation-duration-15" data-animate="fadeInDown animation"></li>
+                <li><img alt="" src="/Images/services/service-4.png" class="animated animation-duration-15" data-animate="fadeInDown animation"></li>
+                <li><img alt="" src="/Images/services/service-5.png" class="animated animation-duration-15" data-animate="fadeInDown animation"></li>
+                <li><img alt="" src="/Images/services/service-6.png" class="animated animation-duration-15" data-animate="fadeInRight animation"></li>
+            </ul>*@
+            <ul id="services-item">
+               
+                @{
+                    foreach (var item in Model.listServicVM)
+                    {
+                        <li class="service">
+                            <aside>
+                                <div class="service-inner">
+                                    <h3>
+                                        <a href="menu.html#@item.Id" title="Coffee">@item.Name</a>
+                                    </h3>
+                                    <p>
+                                        @item.Info
+                                    </p>
+                                </div>
+                            </aside>
+                            <em class="animated animation infinite bullets animation-delay-@item.Delay"></em>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </section>
+
+    <section id="latest" class="section latest"
+             style="background-image: url(/Images/home/bg.png); background-position: right top; background-repeat: no-repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-7">
+                    <h1 class="title line-title">
+                        Bài Viết Mới Nhất<i class="fa">&#xf111;</i>
+                    </h1>
+                    <ul class="posts_list">
+                        @{
+                            int stop = 1;
+                            foreach (var news in Model.listNewsVM)
+                            {
+                                if (stop == 3)
+                                {
+                                    break;
+                                }
+                                <li>
+                                    <figure>
+                                        <a href="#">
+                                            <img alt="" src="@news.Thumb">
+                                        </a>
+                                    </figure>
+                                    <aside>
+                                        <h4 class="title">
+                                            <a href="#">@news.Title</a>
+                                        </h4>
+                                        @Html.Raw(news.Content)
+                                    </aside>
+                                </li>
+                                stop++;
+                            }
+                        }
+
+
+                    </ul>
+                </div>
+                <div class="col-sm-5">
+                    <div class="widget-gallery">
+                        <ul>
+                            @{
+
+                                foreach (var news in Model.listNewsVM)
+                                {
+                                    <li>
+                                        <figure>
+                                            <img class="animated" data-animate="zoomIn animation" alt="" src="@news.Thumb">
+                                            <figcaption>
+                                                <a class="gallery-ajax" href="/Home/DoNews/@news.Id"></a>
+                                            </figcaption>
+                                        </figure>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @{
+        if (Model.homeVideoVM != null)
+        {
+            <section id="info-recipe" class="section info-recipe">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <figure class="animated" data-animate="fadeInUp animation">
+                                <img alt="" src="@Model.homeVideoVM.Thumb">
+                            </figure>
+                            <aside>
+                                <h4 class="title">@Model.homeVideoVM.Title</h4>
+                                @Html.Raw(Model.homeVideoVM.Content)
+                            </aside>
+                        </div>
+                        <div class="col-sm-5">
+
+                            <ul class="nav video-recipe">
+                                <li>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/D-tjyNq7drk"></iframe>
+                                        <iframe class="embed-responsive-item" src='@Html.Raw("https://www.youtube.com/v/"+ Model.homeVideoVM.YoutubeId1)'></iframe>
+                                    </div>
+                                    <h5 class="title">@Model.homeVideoVM.YoutubeId1</h5>
+                                </li>
+
+                                <li>
+                                    <div class="embed-responsive embed-responsive-16by9">
+                                        <iframe class="embed-responsive-item" src='@Html.Raw("https://www.youtube.com/v/"+ Model.homeVideoVM.YoutubeId2)'></iframe>
+                                    </div>
+                                    <h5 class="title">@Model.homeVideoVM.YoutubeId2</h5>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+    }
+
+</div>
+
+}
+
+@section FooterJQuery{
+    
+<script src="~/Scripts/jquery.validate.min.js"></script>
+}

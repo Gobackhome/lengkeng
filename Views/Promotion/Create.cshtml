@@ -1,0 +1,127 @@
+﻿@model lengkeng.Models.Promotion
+@using lengkeng.Models
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section TitleSection{
+    Create Promotion
+}
+
+@section HeaderSection{
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+@section ContentBody{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Tạo mới một khuyến mãi</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Promotion</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-control">
+                <label class="control-label col-md-12">Khuyến Mãi Theo Danh Mục</label>
+                <select class="form-control" name="CategoryId" multiple>
+                    @{
+                        List<Category> listCategory = (List<Category>)ViewData["Category"];
+                        if (listCategory != null)
+                        {
+                            foreach (var item in listCategory)
+                            {
+                                <option value="@item.CategoryId">@item.CategoryName</option>
+                            }
+                        }
+                    }
+
+                </select>
+            </div>
+            <div class="form-control">
+                <label class="control-label col-md-12">Khuyến Mãi Theo Món</label>
+                <select class="form-control" name="ItemId" multiple>
+                    @{
+                        List<Item> listItem = (List<Item>)ViewData["Item"];
+                        if (listItem != null)
+                        {
+                            foreach (var item in listItem)
+                            {
+                                <option value="@item.ItemId">@item.ItemName</option>
+                            }
+                        }
+                    }
+
+                </select>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descriptions, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Descriptions, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descriptions, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Ngày Bắt Đầu:</label>
+                <div class="col-md-10">
+                    <input type="text" name="dayStart" class="form-control text-box timeOpen "  required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Ngày Kết Thúc:</label>
+                <div class="col-md-10">
+                   <input type="text" name="dayStart" class="form-control text-box timeOpen " required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Upload Ảnh:</label>
+                <div class="col-md-10">
+                    <input type="file" class="form-control" name="imageUpload" accept="image/*" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Trở lại danh sách", "Index")
+    </div>
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('.timeOpen').datetimepicker();
+        });
+    </script>
+
+
+
+}

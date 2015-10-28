@@ -1,0 +1,168 @@
+﻿@model lengkeng.Models.Item
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section TitleSection{
+    Edit Item
+}
+
+@section HeaderSection{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+@section ContentBody{
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Thay đổi thông tin thức ăn (đồ uống)</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <form action="/Item/Edit" method="post" enctype="multipart/form-data">
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Item</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.ItemId)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <select name="CategoryId" class="form-control">
+                        @{
+                            List<lengkeng.Models.Category> listCategory = (List<lengkeng.Models.Category>)ViewData["listCategory"];
+                            if (listCategory != null)
+                            {
+                                foreach (var cat in listCategory)
+                                {
+                                    <option value="@cat.CategoryId" @(cat.CategoryId.Equals(Model.CategoryId) ? "selected" : "")>@cat.CategoryName</option>
+                                }
+                            }
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ItemName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ItemInfo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ItemInfo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ItemInfo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Giá: </label>
+                <div class="col-md-10">
+                    <input type="number" name="UnitPrice" value="@ViewBag.unitPrice" class="form-control" required /><span style="padding: 5px;">VND</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Upload Ảnh:</label>
+                <img src="@Model.ThumbnailPath" width="250" height="250" />
+                <input type="hidden" value="@Model.ThumbnailPath" name="hf_ThumbnailPath" />
+
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2"></label>
+                <div class="col-md-10">
+                    <input type="file" class="form-control" name="imageUpload" accept="image/*">
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsActive)
+                        @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ItemStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.ItemStatus, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ItemStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsDelete, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsDelete)
+                        @Html.ValidationMessageFor(model => model.IsDelete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    </form>
+    @{
+        lengkeng.Models.Promotion promotion = (lengkeng.Models.Promotion)ViewData["Promotion"];
+        if (promotion != null)
+        {
+            <div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Khuyến Mãi ID</label>
+                    <div class="col-md-10">
+                        <span class="form-control">@promotion.PromotionId</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Tiêu Đề</label>
+                    <div class="col-md-10">
+                        <span class="form-control">@promotion.Title</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Giá</label>
+                    <div class="col-md-10">
+                        <span class="form-control">@promotion.Amount</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Mô Tả</label>
+                    <div class="col-md-10">
+                        <span class="form-control">@promotion.Descriptions</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Ngày Tạo</label>
+                    <div class="col-md-10">
+                        <span class="form-control">@promotion.DateStart</span>
+                    </div>
+                </div>
+
+            </div>
+        }
+    }
+
+    <div>
+        @Html.ActionLink("Trở lại danh sách", "Index")
+    </div>
+}

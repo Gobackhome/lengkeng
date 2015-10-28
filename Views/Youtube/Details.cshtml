@@ -1,0 +1,92 @@
+﻿@model lengkeng.Models.YoutubeHome
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section TitleSection{
+    Details Welcome
+}
+
+@section HeaderSection{
+
+}
+@section ContentBody{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Thông tin chi tiết của lời chào</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+    <div>
+        <h4>YoutubeHome</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Content)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Content)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.YoutubeId1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.YoutubeId1)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TitleYoutubeId1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TitleYoutubeId1)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.YoutubeId2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.YoutubeId2)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TitleYoutubeId2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TitleYoutubeId2)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Thumb)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Thumb)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsDelete)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.IsDelete)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    }

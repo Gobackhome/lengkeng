@@ -1,0 +1,132 @@
+﻿@model lengkeng.Models.Contact
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section TitleSection{
+    Edit Contact
+}
+
+@section HeaderSection{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
+@section ContentBody{
+   
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Thay đổi thông tin contact</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descriptions, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Descriptions, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descriptions, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tel, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @{
+                string temp1 = "", temp2 = "", temp3 = "", temp4 = "";
+                string[] timestemp = ViewData["timestemp"] as string[];
+                if (timestemp.Count() > 2)
+                {
+                    temp1 = timestemp[0];
+                    temp2 = timestemp[1];
+                }
+                if (timestemp.Count() >= 4)
+                {
+                    temp3 = timestemp[2];
+                    temp4 = timestemp[3];
+                }
+}
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Mở cửa (Thứ 2-7):</label>
+                <div class="col-md-10">
+                    <span style="width:40px;float:left;padding: 5px;">Từ</span><input type="text" name="time26Start" value="@temp1" class="form-control text-box timeOpen " style="width:100px;float:left;" required /> <span style="width:40px;float:left;padding: 5px;">Đến</span> <input type="text" name="time26End" value="@temp2" class="form-control text-box  timeOpen" style="width:100px;float:left;" required />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Mở cửa (CN):</label>
+                <div class="col-md-10">
+                    <span style="width:40px;float:left;padding: 5px;">Từ</span><input type="text" name="timeCNStart" value="@temp3" class="form-control text-box timeOpen " style="width:100px;float:left;" /> <span style="width:40px;float:left;padding: 5px;">Đến</span> <input type="text" name="timeCNEnd" value="@temp4" class="form-control text-box  timeOpen" style="width:100px;float:left;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IsDelete, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsDelete)
+                        @Html.ValidationMessageFor(model => model.IsDelete, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Trở lại danh sách", "Index")
+    </div>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate-vsdoc.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('.timeOpen').datetimepicker({
+            format: 'LT'
+        });
+    });
+</script>
+
+
+
+}

@@ -1,0 +1,91 @@
+﻿@model IEnumerable<lengkeng.Models.Feature>
+
+@section TitleSection{
+    View Feature
+}
+
+@section HeaderSection{
+    <link href="~/Content/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+}
+
+@section ContentBody{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Index</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+
+
+    <p>
+        @Html.ActionLink("Tạo mới một slide", "Create")
+    </p>
+    <table class="table" id="datatable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ThumbnailPath1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ThumbnailPath2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BackgroundImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsOnlyImage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsDelete)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThumbnailPath1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThumbnailPath2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BackgroundImage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsOnlyImage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDelete)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatable').DataTable();
+        });
+    </script>
+}

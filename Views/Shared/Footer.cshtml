@@ -1,0 +1,86 @@
+﻿@using lengkeng.ViewModels
+@model FooterViewModel
+<footer id="footer">
+    <div class="footer-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <aside class="widget">
+                        <h3 class="title">Về LengKeng</h3>
+                        <div class="widget-content contact-us">
+                            <p>
+                                Ở quán chúng tôi, quý vị sẽ có được sự phục vụ tận tình và chu đáo nhất.
+                            </p>
+                            <p><i class="fa">&#xf0e0;</i><span>@Model.Email</span></p>
+                            <p><i class="fa">&#xf095;</i><span>@Model.Tel</span></p>
+                            <p>
+                                <i class="fa">&#xf015;</i><span>
+                                    @Model.Address
+                                </span>
+                            </p>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-sm-3">
+                    <aside class="widget">
+                        <h3 class="title">Các dịch vụ</h3>
+                        <div class="widget-content">
+                            <ul>
+                                <li><a href="#">Cà phê văn phòng</a></li>
+                                <li><a href="#">Thức ăn văn phòng</a></li>
+                                <li><a href="#">Đặt món từ xa</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-sm-3">
+                    <aside class="widget">
+                        <h3 class="title">Đăng Ký Nhận Tin</h3>
+                        <div class="widget-content">
+                            <p>
+                                Bạn có thể đăng ký một email và chúng tôi sẽ gởi cho bạn những thông tin mới nhất về dịch vụ của chúng tôi.
+                            </p>
+                            <form method="post" action="#">
+                                <p>
+                                    <input type="text" value="" name="name" placeholder="Name"
+                                           required="required" class="name">
+                                </p>
+                                <p>
+                                    <input type="email" value="" name="email" placeholder="Email"
+                                           required="required" class="email">
+                                </p>
+                                <p>
+                                    <button class="hvr-shutter-out-horizontal">Đăng Ký</button>
+                                </p>
+                            </form>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col-sm-3">
+                    <aside class="widget">
+                        <h3 class="title">Liên Lạc LengKeng Qua</h3>
+                        <div class="widget-content">
+                            <p>Liên kết với chúng tôi qua</p>
+                            <ul class="social">
+                                <li><a href="#" class="hvr-rectangle-out" target="_blank"><i class="fa">&#xf09a;</i></a></li>
+                                <li><a href="#" class="hvr-rectangle-out" target="_blank"><i class="fa">&#xf099;</i></a></li>
+                                <li><a href="#" class="hvr-rectangle-out" target="_blank"><i class="fa">&#xf0d5;</i></a></li>
+                                <li>
+                                    <a href="#" class="hvr-rectangle-out" target="_blank"><i class="fa">&#xf09e;</i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <div class="container">
+            <p>
+                Copyright &copy; @Model.CopyRightYear <a href='@Model.CopyRightLink'>@Model.CopyRightBy</a>. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+
+</footer>

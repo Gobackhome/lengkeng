@@ -1,0 +1,145 @@
+﻿@using lengkeng.ViewModels
+@model AboutListViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section TitleSection{
+    About - LengKeng.Net.VN
+}
+
+@section HeaderSection{
+
+}
+
+@section ContentBody{
+
+    <div id="main-content" class="main-content">
+        <!-- <div class="page-about"> -->
+        <div class="page-header">
+            <figure class="post-thumbnail">
+                <img alt="" src="../Images/about.jpg">
+            </figure>
+            <h1 class="title"><span class="line-title">About Us<i class="fa">&#xf111;</i></span></h1>
+        </div>
+        <section class="section gallery-about">
+            <div class="gallery-flickity">
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-1.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-2.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-3.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-4.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-5.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-6.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-7.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-8.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-9.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-10.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-11.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-12.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-13.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-14.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+                <div class="gallery-cell">
+                    <img alt="" src="/Images/about/gallery-15.jpg" class="animated" data-animate="fadeInRight animation">
+                </div>
+            </div>
+        </section>
+        <section id="infoUs" class="section infoUs"
+                 style="background-image: url('@Model.WelcomeBackground'); background-position: right center; background-repeat: no-repeat;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-push-6">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" src='@Html.Raw("https://www.youtube.com/v/"+ Model.WelcomeLinkVideo)?autoplay=1'></iframe>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-sm-pull-6">
+                        <h1 class="title">@Model.WelcomeTitle</h1>
+                        <aside>
+                            @Html.Raw(Model.WelcomeContext)
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+        @{
+            int count = 0;
+            string data_animate = "";
+            string cssclassPush = "";
+            string cssclassPull = "";
+            string cssclassSection = "";
+            foreach (var item in Model.listAboutViewModel)
+            {
+                if (count % 2 == 0)
+                {
+                    data_animate = "zoomIn";
+                    cssclassSection = "ourMission";
+                    cssclassPush = "";
+                    cssclassPull = "";
+                }
+                else
+                {
+                    cssclassSection = "ourPromise";
+                    data_animate = "fadeInUp";
+                    cssclassPush = "col-sm-push-7";
+                    cssclassPull = "col-sm-pull-5";
+                }
+                count++;
+                <section class="section @cssclassSection">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5 @cssclassPush">
+                                <figure>
+                                    <img alt="" src='@item.Thumbnail' class="animated" data-animate="@data_animate animation">
+
+                                    @*@if (item.Thumbnail2 != null)
+                                        {
+                                            <img alt="" src='@item.Thumbnail2' class="animated" data-animate="fadeInLeft animation animation-delay-25">
+                                        }*@
+                                </figure>
+                            </div>
+                            <div class="col-sm-7 @cssclassPull">
+                                <aside>
+                                    <h1 class="title">@item.Title</h1>
+                                        @Html.Raw(item.Content)
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            }
+        }
+
+        
+
+
+
+        <!-- </div> -->
+    </div>
+}

@@ -1,0 +1,80 @@
+﻿@using lengkeng.ViewModels
+@model BaseViewModel
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Playfair+Display:400,700">
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'
+          rel='stylesheet' type='text/css'>
+  
+    <!--  <link rel="stylesheet" href="../assets/css/animate.css">
+    <link rel="stylesheet" href="../assets/css/hover.css">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../assets/css/nivo-slider.css">
+    <link rel="stylesheet" href="../assets/css/flickity.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/color/default.css">
+
+
+  
+    <script src="../assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher: "1e9facb6-9190-4d1f-aa7d-4db4b2f293c5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>
+    -->
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/hover.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/nivo-slider.css" rel="stylesheet" />
+    <link href="~/Content/flickity.min.css" rel="stylesheet" />
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+    <link href="~/Content/default.css" rel="stylesheet" />
+    @RenderSection("HeaderSection")
+</head>
+<body>
+    <div id="wrap">
+        @{Html.RenderPartial("HeaderIndex", Model.HeaderViewModel);}
+
+        @RenderSection("BodyContent")
+
+        @{Html.RenderPartial("Footer", Model.FooterViewModel);}
+    </div>
+<!--
+    <script src="../assets/js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="../assets/js/vendor/imagesloaded.pkgd.min.js"></script>
+    <script src="../assets/js/vendor/flickity.pkgd.min.js"></script>
+    <script src="../assets/js/vendor/jquery.waypoints.min.js"></script>
+    <script src="../assets/js/vendor/bootstrap.min.js"></script>
+    <script src="../assets/js/vendor/jquery.nivo.slider.pack.js"></script>
+     <script src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <script src="../assets/js/main.js"></script>-->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js"></script>-->
+
+    
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/imagesloaded.pkgd.min.js"></script>
+    <script src="~/Scripts/flickity.pkgd.min.js"></script>
+    <script src="~/Scripts/jquery.waypoints.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.nivo.slider.pack.js"></script>
+    <script src="~/Scripts/main.js"></script>
+    @RenderSection("FooterJQuery")
+</body>
+</html>

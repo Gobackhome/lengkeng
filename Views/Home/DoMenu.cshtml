@@ -1,0 +1,73 @@
+﻿@using lengkeng.ViewModels
+@model DoMenuViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section TitleSection{
+    Menu - LengKeng.Net.VN
+}
+
+@section HeaderSection{
+    
+}
+
+@section ContentBody{
+    <div id="main-content" class="main-content">
+        <div class="page-header">
+            <figure class="post-thumbnail">
+                <img alt="" src="/Images/menus.jpg">
+            </figure>
+            <h1 class="title"><span class="line-title">Menu<i class="fa">&#xf111;</i></span></h1>
+        </div>
+        <div class="page-content">
+            <div id="menus" class="menus">
+                <div class="container">
+                    <div id="filter" class="filter">
+                        @{
+                            foreach (var cat in Model.categoryViewModels)
+                            {
+                                <a class="button" href="/Home/DoMenu/@cat.Id" style="padding: 10px 20px;margin-top: 10px;" data-filter=".@cat.Id">@cat.Name</a>
+                            }
+                        }
+
+                    </div>
+                    <div class="menus-inner">
+                       
+                            <section id="@Model.itemFollowCategoryViewModels.categoryViewModel.Id" class="section menu-item @Model.itemFollowCategoryViewModels.categoryViewModel.Id">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h1 class="title">@Model.itemFollowCategoryViewModels.categoryViewModel.Name</h1>
+                                        <figure class="menu-thumbnail">
+                                            <img alt="" src="@Model.itemFollowCategoryViewModels.categoryViewModel.Thumbnail">
+                                        </figure>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="menu-inner">
+                                            @{
+                                                int deley = 0;
+                                                foreach (var item in Model.itemFollowCategoryViewModels.listItemViewModel)
+                                                {
+                                                   
+                                                    <aside class="clearfix animated animation-delay-@deley" data-animate="fadeInRight">
+                                                        <img class="menu-img" alt="" src="@item.ThumbnailPath">
+                                                        <div class="menu-content">
+                                                            <h5 class="title menu-title"><span>@item.ItemName</span><span class="menu-price"><i class="fa fa"></i>@item.Prices VND</span></h5>
+                                                            <p>@item.ItemInfo</p>
+                                                        </div>
+                                                    </aside>
+                                                    deley += 25;
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                       
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
